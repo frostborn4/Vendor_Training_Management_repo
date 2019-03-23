@@ -1,0 +1,250 @@
+/* Close button */
+
+#close_modal {
+  float: right;
+  text-align: right;
+  background-color: #dc3545;
+  border-radius: 8px;
+  color: white;
+  border-style: solid;
+  border-width: 1px;
+  border-color: red;
+}
+
+/* Hover for Close button */
+
+#close_modal:hover {
+  border-radius: 10px;
+  background-color: #b81828;
+}
+
+/* Modal Main Content */
+
+.vm-mc {
+  margin: auto;
+  top: 40px;
+  min-height: 80vh;
+  /* max-height: 80vh; */
+  border: 1px solid #888;
+  width: 90%;
+  /* display: block; */
+  padding: 0px;
+  border-radius: 10px;
+}
+
+/* Modal Header */
+
+.vm-mh {
+  max-height: 30vh;
+  padding: .4rem;
+  margin-bottom: 15px;
+}
+
+/* Modal Body */
+
+.vm-mb {
+  overflow: auto;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+.vendor-list-pg {
+  display: block;
+}
+
+.vendor-add-pg {
+  display: none;
+}
+
+/* .tgrid {
+    border-style: solid;
+    border-color: hotpink;
+    border-width: 1px;
+} */
+
+.vm-grid-container {
+  /* border-style:solid;
+    border-color: rgb(24, 137, 189);
+    border-width: 1px;
+    height: 40vh; */
+  position: relative;
+  min-height: 50vh;
+  padding-top: 5vh;
+  overflow: auto;
+  border-style: solid;
+  border-width: 5px;
+  border-left-color: rgb(113, 155, 233);
+  border-right-color: rgb(113, 155, 233);
+  border-top-color: rgb(113, 155, 233);
+
+  border-bottom-color: white;
+}
+
+.vm-row {
+  margin-right: 25px;
+  padding: 1vh;
+  padding-bottom: 1vh;
+}
+
+.vm-col {
+  border-style: solid;
+  border-color: rgb(24, 137, 189);
+  border-width: 1px;
+  background-color: rgb(113, 155, 233);
+  padding: 8px;
+}
+
+.vm-col:hover {
+  background-color: rgb(47, 78, 145);
+}
+
+.vm-col-del {
+  border-style: solid;
+  border-color: rgb(24, 137, 189);
+  border-width: 2px;
+  background-color: rgb(236, 34, 34);
+  padding: 8px;
+}
+
+.vm-col-del:hover {
+  background-color: rgb(102, 14, 14);
+}
+
+.chkbox-col {
+  border-style: none;
+  border-width: 0px;
+  background-color: white;
+}
+
+.chkbox-col:hover {
+  background-color: white;
+}
+
+#nv-btn {
+  position: absolute;
+  right: 20px;
+  background-color: #3c8dbc;
+  border-style: groove;
+  border-color: white;
+  border-width: 3px;
+}
+
+#nv-btn:hover {
+  background-color: #265977;
+}
+
+#v-search {
+  position: absolute;
+  right: 150px;
+  margin-top: 5px;
+  background-color: #5d99bd;
+  border-style: ridge;
+  border-color: rgb(255, 255, 255);
+  border-width: 2px;
+  color: white;
+  border-radius: 15px;
+  padding: 3px;
+}
+
+#v-search:hover {
+  background-color: #3c8dbc;
+}
+
+#return-btn {
+  margin-left: 1vw;
+  margin-bottom: 1vh;
+}
+
+/* Custom checkbox css */
+
+/*************************/
+
+/* Customize the label (the container) */
+
+.chkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+
+.chkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+
+.checkmark {
+  position: absolute;
+  top: 1px;
+  right: 0;
+  height: 30px;
+  width: 32px;
+  background-color: #eee;
+  border-style: solid;
+  border-color: rgb(113, 155, 233);
+  border-width: 1px;
+  border-radius: 5px;
+}
+
+/* On mouse-over, add a grey background color */
+
+.chkbox-container:hover input~.checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+
+.chkbox-container input:checked~.checkmark {
+  background-color: rgb(113, 155, 233);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Show the checkmark when checked */
+
+.chkbox-container input:checked~.checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+
+.chkbox-container .checkmark:after {
+  left: 12px;
+  top: 7px;
+  width: 7px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/*************************/
+
+/* End Custom checkbox css */
