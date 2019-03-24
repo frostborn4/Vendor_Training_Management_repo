@@ -137,9 +137,9 @@ Integration of Modal- Styling
 }
 
 /* Text weight for paragraphs */
-p:only-child {
+/* p:only-child {
   font-weight: bold;
-}
+} */
 
 #participants::-webkit-input-placeholder{
   color:#999;
