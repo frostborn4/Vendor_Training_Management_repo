@@ -1,7 +1,6 @@
 package dao.vt.trainingRequestAndStatus;
 
-import dao.Employee.Employee;
-import dao.trainingManagementStatus.TrainingManagementStatus;
+import dao.employee.Employee;
 import dao.trainingRequest.TrainingRequest;
 import dao.vt.vendorTrainingRequest.VendorTrainingRequest;
 
