@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 public class TrainingRequestMapper implements RowMapper<TrainingRequest> {
 
-	@Override
+	
 	public TrainingRequest mapRow(ResultSet result, int arg1) throws SQLException {
 		TrainingRequest tr = new TrainingRequest();
 		tr.setTraining_request_id(result.getInt(1));

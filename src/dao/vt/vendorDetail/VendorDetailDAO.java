@@ -23,7 +23,9 @@ public class VendorDetailDAO {
 	}
 	
 	public void insertVendorDetail(String vendor_name, String vendor_phone, String vendor_email, String vendor_city, String vendor_state, String vendor_country, String vendor_zipcode, String vendor_time_zone){
+		
 		String sql = "insert into vendor_details values(vendor_id_seq.nextval, ?,?,?,?,?,?,?,?)";
+		
 		temp.update(sql, new Object[]{vendor_name,vendor_phone,vendor_email,vendor_city,vendor_state,vendor_country,vendor_zipcode,vendor_time_zone});
 	}
 	
@@ -46,7 +48,7 @@ public class VendorDetailDAO {
 		
 		String sql = "select * from vendor_details where vendor_name = ?";
 		
-		List<VendorDetail> vd = temp.query(sql, new Object[]{vendorName}, new VendorDetailMapper());
+		List <VendorDetail> vd = temp.query(sql, new Object[]{vendorName}, new VendorDetailMapper());
 		
 		return vd;
 	}
