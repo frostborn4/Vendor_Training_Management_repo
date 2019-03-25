@@ -95,9 +95,10 @@
 						<span class="dropdown-item">Welcome, SPOC</span> <span
 							class="dropdown-item">Your Vertical: Logistics</span>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" onclick="location.href='/SpringApp/logout'"> <b
+						<a class="dropdown-item" > <b
 							style="color: tomato">Logout</b>
 						</a>
+						<!-- onclick="location.href='/SpringApp/logout'" -->
 					</div></li>
 			</ul>
 		</div>
