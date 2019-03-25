@@ -28,7 +28,9 @@ public class TrainingRequestAndStatusMapper implements RowMapper<TrainingRequest
 		String start_date = result.getString(7);
 		String[] date = start_date.split(" ");
 		tr.setRequest_start_date(date[0]);
-		tr.setRequest_end_date(result.getString(8));
+		String end_date = result.getString(8);
+		String[] edate = end_date.split(" ");
+		tr.setRequest_end_date(edate[0]);
 		tr.setRequest_location(result.getString(9));
 		tr.setRequest_approx_participant(result.getInt(10));
 		tr.setTime_requested(result.getString(11));

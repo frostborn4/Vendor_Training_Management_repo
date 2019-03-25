@@ -20,11 +20,11 @@
 
 .vendor-overlay {
   position: absolute;
-  top: 27%;
+  top: 23%;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 73%;
+  height: 77%;
   width: 100%;
   visibility: hidden;
   /*opacity: 0;

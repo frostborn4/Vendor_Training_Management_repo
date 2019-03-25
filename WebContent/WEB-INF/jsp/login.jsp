@@ -1,27 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+       
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-    <title>Login Page</title>
-    <!--Made with love by Mutiullah Samim -->
-    <!--Bootsrap 4 CDN-->
-    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <!--Fontawesome CDN-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-    <!--Custom styles-->
-    <link rel="stylesheet" type="text/css" href="css/loginStyle.css">
-    <script src="/vendor/jquery/jquery.js"></script>
-    <script>
+<title>Login Page</title>
+<!--Made with love by Mutiullah Samim -->
+<!--Bootsrap 4 CDN-->
+<link href="resources/vendor/bootstrap/css/bootstrap.css"
+	rel="stylesheet">
+	
+<!--Fontawesome CDN-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+	
+<!--Custom styles-->
+<link rel="stylesheet" type="text/css" href="resources/css/loginStyle.css">
+<script src="resources/vendor/jquery/jquery.js"></script>
 
-    </script>
 </head>
 
 <body>
-        <div class="logo-placement"><img class="logo-size" src="img/AtosSyntelLogoMedWhite.png" alt=""></div>
+        <div class="logo-placement"><img class="logo-size" src="<c:url value="resources/img/AtosSyntelLogoMedWhite.png" />"></div>
 
     <div class="container">
 
@@ -33,7 +39,7 @@
                     </center>
                 </div>
                 <div class="card-body">
-                    <form action ="index.html">
+                    <form action ="login">
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>

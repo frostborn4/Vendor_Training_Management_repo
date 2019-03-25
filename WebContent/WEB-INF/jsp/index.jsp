@@ -3,6 +3,8 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -30,8 +32,7 @@
 
 <!-- Custom styles-->
 <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet">
-<link href="<c:url value="/resources/css/vtm-modal.css"/>"
-	rel="stylesheet">
+<link href="<c:url value="/resources/css/vtm-modal.css"/>" rel="stylesheet">
 
 
 <!-- Bootstrap core JavaScript -->
@@ -94,7 +95,7 @@
 						<span class="dropdown-item">Welcome, SPOC</span> <span
 							class="dropdown-item">Your Vertical: Logistics</span>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="login.html"> <b
+						<a class="dropdown-item" onclick="location.href='/SpringApp/logout'"> <b
 							style="color: tomato">Logout</b>
 						</a>
 					</div></li>
@@ -117,78 +118,89 @@
 			<div class="col-md-3"
 				style="border: 10px solid #FFFF66; border-style: none none none solid;">
 				<h4>New</h4>
-				<button action="/process" type="submit"
+				<button type="submit"
 					class="btn btn-outline-warning " id="bpbutton"
 					style="float: right; position: relative; top: -40px; margin-right: 10px;">to
 					Processing</button>
 					
 				<!-- Start of for loop for new training requests on the left of the screen -->
-				<c:forEach var="pro1" items="${vendorTrainingRequestList1}">
-					<div class="card"
-						style="width: 14rem; margin-left: 10px; margin-top: 20px;" id="p1">
+				<c:forEach var="pro1" items="${vendorTrainingRequestList1}" varStatus="theCount">
+					<div class="card" style="width: 14rem; margin-left: 10px; margin-top: 20px;" id="p1">
 						<div class="cardcontainer">
-							<input type="checkbox" class="form-check-input" id="check1">
+							<input type="checkbox" class="form-check-input" id="pro1-check-${theCount.count}">
 							<div class="card-body">
 								<h5 class="card-title">
-									<span><i class="fa fa-id-card" aria-hidden="true"
-										style="color: #3c8dbc; float: inherit;"></i>${pro1.getVendorTrainingRequest().vendor_training_request_id}</span>
-									<span style="float: right;"> <img id="vendor_icon"
-										style="margin-top: 27px;"
-										src="<c:url value="/resources/img/vendor-icon-placeholder.png" />">
+									<span>
+										<i class="fa fa-id-card" aria-hidden="true" style="color: #3c8dbc; float: inherit;"></i> ${pro1.getVendorTrainingRequest().vendor_training_request_id}
 									</span>
 								</h5>
-								<hr style="width: 75%; border-color: #b9b9b9;">
+								<hr style="width: 90%; border-color: #b9b9b9;">
 								<p class="card-text">
 								<table style="margin-bottom: -15px;">
 									<tr>
 										<td style="text-align: center"><i class="fas fa-user"
 											style="color: #ff3232; float: inherit;"></i></td>
-										<td style="text-align: left; padding-left: 5px;"><a
-											href="#" class="reset-a">${pro1.getEmployee().first_name}
-												${pro1.getEmployee().last_name} </a></td>
+										<td style="text-align: left; padding-left: 5px;">
+											${pro1.getEmployee().first_name} ${pro1.getEmployee().last_name}
+										</td>
 									</tr>
 									<tr>
 										<td style="text-align: center"><i
 											class="fas fa-network-wired"
-											style="float: inherit; color: #323232"></i></td>
-										<td style="text-align: left; padding-left: 5px;"><a
-											href="#" class="reset-a">${pro1.getTrainingRequest().request_training_module}
-										</a></td>
+											style="float: inherit; color: #323232" id="p_module_icon-${theCount.count}"></i></td>
+										<td style="text-align: left; padding-left: 5px;">
+											${pro1.getTrainingRequest().request_training_module}
+										</td>
 									</tr>
 									<tr>
 										<td style="text-align: center"><i
 											class="fas fa-map-marker-alt"
 											style="float: inherit; color: #323232"></i></td>
-										<td style="text-align: left; padding-left: 5px;"><a
-											href="#" class="reset-a">${pro1.getTrainingRequest().request_location}</a></td>
+										<td style="text-align: left; padding-left: 5px;">
+											${pro1.getTrainingRequest().request_location}
+										</td>
 									</tr>
 									<tr>
 										<td style="text-align: center"><i class="fas fa-users"
 											style="float: inherit; color: #323232"></i></td>
-										<td style="text-align: left; padding-left: 5px;"><a
-											href="#" class="reset-a">${pro1.getTrainingRequest().request_approx_participant}</a></td>
+										<td style="text-align: left; padding-left: 5px;">
+											${pro1.getTrainingRequest().request_approx_participant}
+										</td>
 									</tr>
 									<tr>
-										<td style="text-align: center"><i
+										<td style="text-align: center" id="p_date_icon-${theCount.count}"><i
 											class="fas fa-calendar-day"
-											style="float: inherit; color: #323232"></i></td>
-										<td style="text-align: left; padding-left: 5px;"><a
-											href="#" class="reset-a">${pro1.getTrainingRequest().request_start_date}</a></td>
+											style="float: inherit; color: #323232" ></i></td>
+										<td style="text-align: left; padding-left: 5px;">
+											${pro1.getTrainingRequest().request_start_date}
+										</td>
 									</tr>
 								</table>
 								</p>
 							</div>
-							<div id="overlay1" class="vendor-overlay">
+							<div class="vendor-overlay" id="module-overlay-${theCount.count}">
 								<div class="cardtext">
-									<p
-										style="font-family: Arial, Helvetica, sans-serif; font-size: medium; font-weight: 400;">
-										More details about the module and some more details about the
-										module.</p>
+									<p style="font-family: Arial, Helvetica, sans-serif; font-size: medium; font-weight: 400;">
+										<b>Module Name:</b> ${pro1.getTrainingRequest().request_training_module}
+										<br>
+										<b>Module Scope:</b> ${pro1.getTrainingRequest().request_training_module_scope}
+										<br>
+										<b>Training Mode:</b> ${pro1.getTrainingRequest().request_training_mode}
+									</p>
+								</div>
+							</div>
+							<div class="vendor-overlay" id="date-overlay-${theCount.count}">
+								<div class="cardtext">
+									<p style="font-family: Arial, Helvetica, sans-serif; font-size: medium; font-weight: 400;">
+										<b>Start Date:</b> ${pro1.getTrainingRequest().request_start_date}
+										<br>
+										<b>End Date:</b> ${pro1.getTrainingRequest().request_end_date}
+										<br>
+									</p>
 								</div>
 							</div>
 						</div>
 					</div>
-
 				</c:forEach>
 			</div>
 
@@ -197,38 +209,88 @@
 				id="pd">
 				<h4>Processing</h4>
 				<div class="row" id="hp">
-					<c:forEach var="pro2" items="${vendorTrainingRequestList2}">
+					<c:forEach var="pro2" items="${vendorTrainingRequestList2}" varStatus="theCount">
 						<div class="card"
-							style="margin-left: 10px; margin-top: 20px; width: 14rem;">
+							style="margin-left: 10px; margin-top: 20px; width: 16rem;">
 							<div class="card-body">
-								<h5 class="card-title">Vendor Request</h5>
+								
+								<h5 class="card-title">
+									<span>
+										<i class="fa fa-id-card" aria-hidden="true" style="color: #3c8dbc; float: inherit;"></i> ${pro2.getVendorTrainingRequest().vendor_training_request_id}
+									</span>
+									<span style="float: right;">
+										<img style="margin-top: 27px;" src="<c:url value="/resources/img/vendor-icon-placeholder.png" />">
+									</span>
+								</h5>
+								<hr style="width: 90%; border-color: #b9b9b9;">
+								
+								<%-- <h5 class="card-title">Vendor Request</h5>
 								<h6 class="card-subtitle mb-2 text-muted">ID:
-									${pro2.getVendorTrainingRequest().vendor_training_request_id}</h6>
-								<p class="card-text">${pro2.getTrainingRequest().request_training_module}</p>
+									${pro2.getVendorTrainingRequest().vendor_training_request_id}</h6> --%>
+								<p class="card-text">
+								<table style="margin-bottom: -15px;">
+									<tr>
+										<td style="text-align: center"><i class="fas fa-user"
+											style="color: #ff3232; float: inherit;"></i></td>
+										<td style="text-align: left; padding-left: 5px;">
+											${pro2.getEmployee().first_name} ${pro2.getEmployee().last_name}
+										</td>
+									</tr>
+									<tr>
+										<td style="text-align: center"><i
+											class="fas fa-network-wired"
+											style="float: inherit; color: #323232"></i></td>
+										<td style="text-align: left; padding-left: 5px;" id="n_">
+											${pro2.getTrainingRequest().request_training_module}
+										</td>
+									</tr>
+									<tr>
+										<td style="text-align: center"><i
+											class="fas fa-map-marker-alt"
+											style="float: inherit; color: #323232"></i></td>
+										<td style="text-align: left; padding-left: 5px;">
+											${pro2.getTrainingRequest().request_location}
+										</td>
+									</tr>
+									<tr>
+										<td style="text-align: center"><i class="fas fa-users"
+											style="float: inherit; color: #323232"></i></td>
+										<td style="text-align: left; padding-left: 5px;">
+											${pro2.getTrainingRequest().request_approx_participant}</a></td>
+									</tr>
+									<tr>
+										<td style="text-align: center"><i
+											class="fas fa-calendar-day"
+											style="float: inherit; color: #323232"></i></td>
+										<td style="text-align: left; padding-left: 5px;">
+											${pro2.getTrainingRequest().request_start_date}
+										</td>
+									</tr>
+								</table>
+								</p>
 
 								<!-- Yosuf ElSaadany 3/14/2019 1:47 pm Integration of Modal- DOM for Modal -->
-								<i onclick="javascript:store(${pro2.getVendorTrainingRequest().vendor_training_request_id});" style="margin-left: 10px" id="modalIcons" title="Open" data-toggle="modal" data-target="#myModal" class="fas fa-external-link-alt"></i>
+								<i style="margin-left: 10px" id="modalIcons" title="Open" data-toggle="modal" data-target="#myModal${theCount.count}" class="fas fa-external-link-alt"></i>
 							<!-- 	onclick="location.href='/SpringApp/process'"></i> -->
-							<%-- onclick="javascript:store(${pro2.getVendorTrainingRequest().vendor_training_request_id}); --%>
 									 
-								<div class="modal" id="myModal">
+								<div class="modal" id="myModal${theCount.count}"> 
 									<div class="modal-dialog modal-xl">
 										<div class="modal-content">
 											<!-- Modal Header -->
 											<div class="modal-header">
 												<div class="col-lg-4">
 													<p><b>Training Request ID:</b> 
-														<p id="modalheaderinput1"></p>
+														${pro2.getVendorTrainingRequest().vendor_training_request_id}
 													</p>
 												</div>
 												<div class="col-lg-4">
 													<p><b>Project Manager:</b>
-														<p id="modalheaderinput2"></p>
+														${pro2.getEmployee().first_name} ${pro2.getEmployee().last_name} 
 													</p>
 												</div>
 												<div class="col-lg-2">
-													<p><b>Module:</b> 
-														<p id="modalheaderinput3"></p>
+													<p><b>Module:</b>
+														${pro2.getTrainingRequest().request_training_module}
 													</p>
 												</div>
 												<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -270,9 +332,8 @@
 																		data-toggle="collapse" data-parent="#accordionEx"
 																		href="#collapseTwo2" aria-expanded="false"
 																		aria-controls="collapseTwo2">
-																		<h5 class="mb-0">
-																			Procurement Team Shortlist <i id="modalIcons"
-																				class="fas fa-angle-down rotate-icon"></i>
+																		<h5 class="mb-0">Procurement Team Shortlist
+																			<i id="modalIcons" class="fas fa-angle-down rotate-icon"></i>
 																		</h5>
 																	</a>
 																</div>
@@ -280,19 +341,33 @@
 																<div id="collapseTwo2" class="collapse" role="tabpanel"
 																	aria-labelledby="headingTwo2"
 																	data-parent="#accordionEx">
-																	<div class="card-body">Anim pariatur cliche
-																		reprehenderit, enim eiusmod high life accusamus terry
-																		richardson ad squid. 3 wolf moon officia aute, non
-																		cupidatat skateboard dolor brunch. Food truck quinoa
-																		nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-																		sunt aliqua put a bird on it squad single-origin
-																		coffee nulla assumenda shoreditch et. Nihil anim
-																		keffiyeh helvetica, craft beer labore wes anderson
-																		cred nesciunt sapiente ea proident. Ad vegan excepteur
-																		butcher vice lomo. Leggings occaecat craft beer
-																		farm-to-table, raw denim aesthetic synth nesciunt you
-																		probably haven't heard of them accusamus labore
-																		sustainable VHS.</div>
+																	<div class="card-body">
+																		<table class="table">
+																			<thead class="thead-light">
+																				<tr>
+																					<th>Vendor</th>
+																					<th>Phone</th>
+																					<th>Email</th>
+																					<th>City</th>
+																					<th>State</th>
+																				</tr>
+																			</thead>
+																			<!-- <p>Before For Loop</p> -->
+																			<c:forEach var="vendor" items="${vendorDetailList}">
+																				<!-- <p>Inside For Loop1</p> -->
+																				<tr>
+																					<td>${vendor.vendor_name}</td>
+																					<td>${vendor.vendor_phone}</td>
+																					<td>${vendor.vendor_email}</td>
+																					<td>${vendor.vendor_city}</td>
+																					<td>${vendor.vendor_state}</td>
+																				</tr>
+																				<<!-- p>Inside For Loop2</p> -->
+																			</c:forEach>
+																			<!-- <p>After For Loop</p> -->
+																		</table>
+																		<!-- <p>After Table</p> -->
+																	</div>
 																</div>
 															</div>
 															<div class="card">
@@ -521,17 +596,16 @@
 					<div class="card" style="margin-top: 20px; width: 14rem;">
 						<div class="card-body">
 							<h5 class="card-title">
-								<span><i class="fa fa-id-card" aria-hidden="true"
-									style="color: #3c8dbc; float: inherit;"></i>
-									${pro3.getVendorTrainingRequest().vendor_training_request_id}</span> <span
-									style="float: right;"><img id="vendor_icon2"
-									style="margin-top: 27px;"
-									src="<c:url value="/resources/img/vendor-icon-placeholder.png" />" /></span>
+								<span>
+									<i class="fa fa-id-card" aria-hidden="true" style="color: #3c8dbc; float: inherit;"></i> ${pro3.getVendorTrainingRequest().vendor_training_request_id}
+								</span>
+								<span style="float: right;">
+										<img id="vendor_icon2" style="margin-top: 27px;" src="<c:url value="/resources/img/vendor-icon-placeholder.png" />" />
+								</span>
 							</h5>
-							<hr style="width: 75%; border-color: #b9b9b9;">
+							<hr style="width: 90%; border-color: #b9b9b9;">
 							<h6 class="card-subtitle mb-2 text-muted">
-								<i class="fas fa-network-wired"
-									style="float: none; margin-right: 5px;"></i>${pro3.getTrainingRequest().request_training_module}
+								<i class="fas fa-network-wired" style="float: none; margin-right: 5px;"></i>${pro3.getTrainingRequest().request_training_module}
 							</h6>
 							<p class="card-text">Take attendence</p>
 						</div>
@@ -751,67 +825,34 @@
 						}
 					});
 
-					/* 			$('#hoverelement1')
-										.hover(
-												function() {
-													$main_text = $(this).text();
-													$(this)
-															.html(
-																	" <b>David Collins</b>");
-												}, function() {
-													$(this).text($main_text);
-												});
-
-								$('#hoverelement2').hover(function() {
-									$main_text = $(this).text();
-									$(this).html(" <b>React Native</b>");
-								}, function() {
-									$(this).text($main_text);
-								});
-
-								$('#hoverelement3').hover(function() {
-									$main_text = $(this).text();
-									$(this).html(" <b>Phoenix, AZ</b>");
-								}, function() {
-									$(this).text($main_text);
-								});
-
-								$('#hoverelement4').hover(function() {
-									$main_text = $(this).text();
-									$(this).html(" <b>30 approx.</b>");
-								}, function() {
-									$(this).text($main_text);
-								});
-
-								$('#hoverelement5').hover(function() {
-									$main_text = $(this).text();
-									$(this).html(" <b>3-18-2019</b>");
-								}, function() {
-									$(this).text($main_text);
-								}); */
-
-					/**Jabril's funtion to create an onlick event for vendor training icon**/
-					$("#vendor_icon").mouseover(function() {
-						console.log('here');
-						var vendis = $(".vendor-overlay");
+					$("[id^=p_module_icon]").hover(function() {
+						var id = this.id.substring(14, 15);
+						var vendis = $('#module-overlay-'+id);
 						vendis.css("visibility", "visible");
-					});
-					$("#vendor_icon").mouseout(function() {
-						var vendis = $(".vendor-overlay");
+					}, function() {
+						var id = this.id.substring(14, 15);
+						//console.log(id+' id');
+						var vendis = $('#module-overlay-'+id);
 						vendis.css("visibility", "hidden");
-					});
-
+					}); 
+					
+					$("[id^=p_date_icon]").hover(function() {
+						var id = this.id.substring(12, 13);
+						var vendis = $('#date-overlay-'+id);
+						vendis.css("visibility", "visible");
+					}, function() {
+						var id = this.id.substring(12, 13);
+						var vendis = $('#date-overlay-'+id);
+						vendis.css("visibility", "hidden");
+					}); 		
+					
+					
 					 $('#bpbutton').click(function() {
-					 if ($('#check1').is(':checked')) {
-					 $('#check1').hide();
-					 // $('#overlay1').hide();
-					 $("#p1").prependTo("#hp");
-					 }
-					 if ($('#check2').is(':checked')) {
-					 $('#check2').hide();
-					 $('#overlay2').hide();
-					 $("#p2").prependTo("#hp");
-					 }
+						 if ($('[id^=pro1-check]').is(':checked')) {
+						 //$('#check1').hide();
+						 // $('#overlay1').hide();
+						 $("#p1").hide();
+					 	}
 					 }) 
 
 					$('#sb').change(
@@ -825,27 +866,27 @@
 							});
 				});
 	</script>
-
+	<!-- Yosuf ElSaadany 3/24/2019 10:30pm -->
+	<!-- Ajax request for Modal -->
 	<script>
-		function handler(e) {
-			alert(e.target.value);
-		}
-	</script>
-	
-	 
-	<!-- Yosuf ElSaadany 3/23/2019 10:42pm 
-		 Get Request info after opening modal for certain request -->
-	<script>
-		function store(training_request_id) {
-			//$(window).on('shown.bs.modal-body', function() { 
-				alert('Clicked ' + training_request_id);
-			    //$('#myModal').modal('shown');
-				document.getElementById("#modalheaderinput1").innerHTML = training_request_id;
-			//});
-		}
+	$(window).on('shown.bs.modal', function() { 
+	    //$('#myModal1').modal('show');
+	    //$('.modal').modal('show');
+	    //alert('shown');	    
+        $.ajax({
+        	type: "GET",
+            url : 'process',
+            success : function(data) {
+                alert('AJAX for Modal working');
+            }
+		});
+	});
 	</script>
 
-	<!-- <script>
+	<!-- Yosuf ElSaadany - Script to
+	prevent user from selecting an end
+	date less than the start date
+	<script>
     var start = $('#startDate').val();
     var end = $('#endDate').val();
 
@@ -858,9 +899,7 @@
       if (end)
         start.max = end.value;
     }, false);
-
   </script> -->
-
 
 </body>
 </html>
