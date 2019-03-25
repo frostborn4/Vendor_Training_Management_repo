@@ -12,7 +12,7 @@ public class TrainingManagementStatusMapper implements RowMapper<TrainingManagem
 		
 		TrainingManagementStatus tms = new TrainingManagementStatus();
 		
-		tms.setTraining_management_status_id(result.getInt(1));
+		tms.setTraining_management_stauts_id(result.getInt(1));
 		tms.setTraining_request_id(result.getInt(2));
 		tms.setStatus(result.getInt(3));
 		

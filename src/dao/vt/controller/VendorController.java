@@ -7,10 +7,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import dao.vt.trainingRequestAndStatus.TrainingRequestAndStatus;
-import dao.vt.trainingRequestAndStatus.TrainingRequestAndStatusDAO;
 import dao.vt.vendorDetail.VendorDetail;
 import dao.vt.vendorDetail.VendorDetailDAO;
+import dao.vt.vendorTrainingRequestAndStatus.VendorTrainingRequestAndStatus;
+import dao.vt.vendorTrainingRequestAndStatus.VendorTrainingRequestAndStatusDAO;
 
 @Controller
 public class VendorController {
@@ -29,11 +29,11 @@ public class VendorController {
 	
 	@RequestMapping(value="/")
 	public String loginView(ModelMap map) {
-		List<TrainingRequestAndStatus> list101 = new TrainingRequestAndStatusDAO().getTrainingRequestDetail101();
+		List<VendorTrainingRequestAndStatus> list101 = new VendorTrainingRequestAndStatusDAO().getTrainingRequestDetail101();
 		map.addAttribute("vendorTrainingRequestList1", list101);
-		List<TrainingRequestAndStatus> list102 = new TrainingRequestAndStatusDAO().getTrainingRequestDetail102();
+		List<VendorTrainingRequestAndStatus> list102 = new VendorTrainingRequestAndStatusDAO().getTrainingRequestDetail102();
 		map.addAttribute("vendorTrainingRequestList2", list102);
-		List<TrainingRequestAndStatus> list103 = new TrainingRequestAndStatusDAO().getTrainingRequestDetail103();
+		List<VendorTrainingRequestAndStatus> list103 = new VendorTrainingRequestAndStatusDAO().getTrainingRequestDetail103();
 		map.addAttribute("vendorTrainingRequestList3", list103);
 		return "index";
 	}	
