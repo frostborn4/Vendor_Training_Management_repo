@@ -27,7 +27,7 @@
 </head>
 
 <body>
-        <div class="logo-placement"><img class="logo-size" src="<c:url value="resources/img/AtosSyntelLogoMedWhite.png" />"></div>
+        <div class="logo-placement"><img class="Logo-size" src="<c:url value="resources/img/AtosSyntelLogoLargeBlue.png" />"></div>
 
     <div class="container">
 

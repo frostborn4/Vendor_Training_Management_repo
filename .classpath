@@ -40,5 +40,6 @@
 	<classpathentry kind="lib" path="C:/Users/syntel/Project/SpringApp/WebContent/WEB-INF/lib/jstl-api.jar"/>
 	<classpathentry kind="lib" path="C:/Users/syntel/Project/SpringApp/WebContent/WEB-INF/lib/jstl-impl.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/syntel/Project/SpringApp/WebContent/WEB-INF/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

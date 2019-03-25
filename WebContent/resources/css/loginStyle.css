@@ -17,8 +17,8 @@ align-content: center;
 .logo-placement{
     position: fixed;
 }
-img.logo-size{
-    width:40%;
+.Logo-size{
+    width:28%;
     height:50%;
 }
 .card{
