@@ -68,14 +68,6 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<!-- Dashboard (HOME BUTTON) (Active Item)
-            ----commented because single page app
-            <li class="nav-item active">
-            <a class="nav-link" href="#">Dashboard
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          -->
 				<li class="nav-item py-1" style="padding-right: 5px"><input
 					type="search" id="sb"
 					style="color: white; border-radius: 15px; border: #fff 2px solid; background-color: #3c8dbc; padding-top: 2px; padding-bottom: 3px"
@@ -95,8 +87,8 @@
 						<span class="dropdown-item">Welcome, SPOC</span> <span
 							class="dropdown-item">Your Vertical: Logistics</span>
 						<div class="dropdown-divider"></div>
-						<a  onclick="location.href='/SpringApp/logout'" class="dropdown-item" > <b
-							style="color: tomato">Logout</b>
+						<a onclick="location.href='/SpringApp/logout'"
+							class="dropdown-item"> <b style="color: tomato">Logout</b>
 						</a>
 					</div></li>
 			</ul>
@@ -105,17 +97,15 @@
 	</nav>
 
 	<!-- Page Content -->
-
 	<div class="container">
-		<span
-			style="float: right; margin-top: -10px; margin-bottom: 10px; color: #3c8dbc;">Toggle
+		<span style="float: right; margin-top: -10px; margin-bottom: 10px; color: #3c8dbc;">Toggle
 			In Progress:
 			<button type="button" class="btn btn-link " id="hidebutton">
 				<i id="itog" class="fas fa-toggle-on fa-2x"></i>
 			</button>
 		</span> <br> <br>
 		<div class="row text-left">
-			<div class="col-md-3"
+			<div id="new" class="col-md-3"
 				style="border: 10px solid #FFFF66; border-style: none none none solid;">
 				<h4>New</h4>
 				<button type="submit"
@@ -203,7 +193,6 @@
 					</div>
 				</c:forEach>
 			</div>
-
 			<div id="processing-col" class="col"
 				style="border: 10px solid #FFC04C; border-style: none none none solid;"
 				id="pd">
@@ -270,9 +259,9 @@
 								</p>
 
 								<!-- Yosuf ElSaadany 3/14/2019 1:47 pm Integration of Modal- DOM for Modal -->
-								<i style="margin-left: 10px" id="modalIcons" title="Open" data-toggle="modal" data-target="#myModal${theCount.count}" class="fas fa-external-link-alt"></i>
-							<!-- 	onclick="location.href='/SpringApp/process'"></i> -->
-									 
+								<i style="margin-left: 10px" id="modalIcons" title="Open" data-toggle="modal" data-target="#myModal${theCount.count}" class="fas fa-external-link-alt"
+									 onclick="ajax(${pro2.getVendorTrainingRequest().vendor_training_request_id});"></i>
+									  	
 								<div class="modal" id="myModal${theCount.count}"> 
 									<div class="modal-dialog modal-xl">
 										<div class="modal-content">
@@ -353,7 +342,7 @@
 																				</tr>
 																			</thead>
 																			<!-- <p>Before For Loop</p> -->
-																			<c:forEach var="vendor" items="${vendorDetailList}">
+																			<c:forEach var="vendor" items="${vendorDetailList}" varStatus="status">
 																				<!-- <p>Inside For Loop1</p> -->
 																				<tr>
 																					<td>${vendor.vendor_name}</td>
@@ -616,7 +605,6 @@
 		</div>
 		<br> <br> <br>
 	</div>
-	<!-- /.container -->
 
 	<!-- Begin Ryan's Vendor Modal Code -->
 	<!-- 3/15/2019 -->
@@ -656,7 +644,7 @@
 						</div>
 					</div>
 
-					<!-- Modal body -->
+					<!-- Modal body -->					
 					<div class="modal-body vm-mb">
 
 						<!-- Vendor List Page -->
@@ -670,37 +658,24 @@
 
 
 							<br> <br> <br>
-							<div class="container-fluid vm-grid-container">
+							<div class="container-fluid vm-grid-container">				
+							<c:forEach var="v" items="${vendorDetails}">
+								<!-- Begin for loop -->
 								<div class="row vm-row">
 									<div class="col vm-col chkbox-col">
 										<label class="chkbox-container"> <input
 											type="checkbox"> <span class="checkmark"></span>
 										</label>
 									</div>
-									<div class="col vm-col">Fedex</div>
-									<div class="col vm-col">Info1</div>
-									<div class="col vm-col">Info2</div>
-									<div class="col vm-col">Info3</div>
+									<div class="col vm-col">${v.vendor_name}</div>
+									<div class="col vm-col">${v.vendor_phone}</div>
+									<div class="col vm-col">${v.vendor_email}</div>
 									<div class="col vm-col">Edit</div>
 									<div class="col vm-col-del">Delete</div>
 									<div class="col vm-col">Trainers</div>
 									<div class="col vm-col">All Info</div>
 								</div>
-								<div class="row vm-row">
-									<div class="col vm-col chkbox-col">
-										<label class="chkbox-container"> <input
-											type="checkbox"> <span class="checkmark"></span>
-										</label>
-									</div>
-									<div class="col vm-col">Fedex</div>
-									<div class="col vm-col">Info1</div>
-									<div class="col vm-col">Info2</div>
-									<div class="col vm-col">Info3</div>
-									<div class="col vm-col">Edit</div>
-									<div class="col vm-col-del">Delete</div>
-									<div class="col vm-col">Trainers</div>
-									<div class="col vm-col">All Info</div>
-								</div>
+							</c:forEach>
 							</div>
 						</div>
 						<!-- End Vendor List Page-->
@@ -767,30 +742,7 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- Add Vendor Side-Modal
-  <div class="modal right fade" id="addVendorModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal sideout normal</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
 	<!-- End Ryan's Vendor Modal Code-->
-
 
 	<!-- Footer -->
 	<footer class="py-0"
@@ -804,7 +756,7 @@
 		</p>
 	</div>
 	</div>
-	<!-- /.container --> </footer>
+	</footer>
 
 	<script>
 		$(document).ready(
@@ -866,23 +818,21 @@
 							});
 				});
 	</script>
+	
 	<!-- Yosuf ElSaadany 3/24/2019 10:30pm -->
-	<!-- Ajax request for Modal -->
+	<!-- Ajax request for Modal -->	
 	<script>
-	$(window).on('shown.bs.modal', function() { 
-	    //$('#myModal1').modal('show');
-	    //$('.modal').modal('show');
-	    //alert('shown');	    
-        $.ajax({
-        	type: "GET",
+	function ajax(id) {
+		$.ajax({
+        	type: "POST",
+        	data: {id: id},
             url : 'process',
             success : function(data) {
-                alert('AJAX for Modal working');
+                console.log(data);
             }
 		});
-	});
+	}
 	</script>
-
 	<!-- Yosuf ElSaadany - Script to
 	prevent user from selecting an end
 	date less than the start date

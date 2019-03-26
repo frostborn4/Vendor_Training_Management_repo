@@ -2,10 +2,14 @@ package dao.vt.controller;
 
 import java.util.List;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.vt.trainingRequestAndStatus.TrainingRequestAndStatus;
 import dao.vt.trainingRequestAndStatus.TrainingRequestAndStatusDAO;
@@ -35,25 +39,28 @@ public class VendorController {
 		map.addAttribute("vendorTrainingRequestList2", list102);
 		List<TrainingRequestAndStatus> list103 = new TrainingRequestAndStatusDAO().getTrainingRequestDetail103();
 		map.addAttribute("vendorTrainingRequestList3", list103);
+		List<VendorDetail> vendorDetails = new VendorDetailDAO().getAllVendorDetail();
+		map.addAttribute("vendorDetailList", vendorDetails);
 		return "index";
-	}	
+	}		
 	
-	@RequestMapping(value="/process", method = RequestMethod.GET)
-	public String process(ModelMap map) {
+	@RequestMapping(value="/process", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String process(@RequestParam("id") int id, ModelMap map) {
+		System.out.println("THE ID sent is: " + id);
 		List<VendorDetail> vendorDetailList = new VendorDetailDAO().getAllVendorDetail();
 		map.addAttribute("vendorDetailList", vendorDetailList);
-		System.out.println(map.toString());
-		return "redirect:/";	
-		//return "index";
-		/*String result = "<tr>\r\n" + 
-		"		<td>${vd.vendor_name}</td>\r\n" + 
-		"		<td>${vd.vendor_phone}</td>\r\n" + 
-		"		<td>${vd.vendor_email}</td>\r\n" + 
-		"		<td>${vd.vendor_city}</td>\r\n" + 
-		"		<td>${vd.vendor_state}</td>\r\n" + 
-		"	</tr>";
-		return result;
-		 */
-	}	
+		//System.out.println(map.toString());
+		return map.toString();	
+	}
 	
+/*	@RequestMapping(value="/process/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public String process(@PathVariable("id") int id, ModelMap map) {
+		System.out.println("THE ID sent is: " + id);
+		List<VendorDetail> vendorDetailList = new VendorDetailDAO().getAllVendorDetail();
+		map.addAttribute("vendorDetailList", vendorDetailList);
+		//System.out.println(map.toString());
+		//return map.toString();
+		return "redirect:/";
+		
+	}	*/
 }
