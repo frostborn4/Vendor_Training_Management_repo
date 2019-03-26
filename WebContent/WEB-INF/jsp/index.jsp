@@ -81,11 +81,11 @@
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> <i class="fas fa-user-circle"
-						style="float: none;"></i> Mahesh
+						style="float: none;"></i> ${userid}
 				</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<span class="dropdown-item">Welcome, SPOC</span> <span
-							class="dropdown-item">Your Vertical: Logistics</span>
+							class="dropdown-item">Your Vertical: ${uservert}</span>
 						<div class="dropdown-divider"></div>
 						<a onclick="location.href='/SpringApp/logout'"
 							class="dropdown-item"> <b style="color: tomato">Logout</b>
