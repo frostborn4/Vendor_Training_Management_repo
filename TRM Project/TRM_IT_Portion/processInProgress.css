@@ -1,0 +1,81 @@
+.steps
+{
+    width: 60%;
+    margin-top: 1em;
+    background-color:#3c8dbc;
+    color:white;
+ 	padding: 0px;
+ 	margin: 0px;
+ 	height: 60px;
+}
+.stepsmini
+{
+    width: 57%;
+    height: 2.7em;
+    margin-left: 1.5%;
+    text-align: center;
+    background-color:#8080ff;
+    color:white;
+    border-radius: 0px 0px 0px 0px;
+}
+.pending
+{
+	width: 60%;
+    background-color: #3c8dbc;
+}
+#modeVirtual
+{
+    display: none;
+}
+#checkboxes
+{
+    position: relative;
+    left: 4em;
+}
+#newTrainer
+{
+    display: none;
+}
+
+.button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.btn {
+	color: white;
+	background-color: #3c8dbc;
+}
+
+.step-font {
+	padding-top: 10px;
+	font-weight: bold;
+}
+
+#saveButtonITForm {
+	background-color: #3c8dbc;
+	color: silver;
+	font-size: x-large;
+	width: 40%;
+    height: 2%;
+    margin-top: .3em;
+    border-color: silver;
+    border-width: 3px;
+    margin-left: 25%;   
+}
+
+thead {
+	background-color: #3c8dbc;
+	border-radius: 8px 8px 0px 0px;
+}
+
+thead th {
+	color: white;
+}
