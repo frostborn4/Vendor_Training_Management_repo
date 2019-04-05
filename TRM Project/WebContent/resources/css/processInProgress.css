@@ -1,0 +1,22 @@
+.steps
+{
+    width: 38.5em;
+    margin-top: .5em;
+}
+.pending
+{
+    background-color: lightpink;
+}
+#modeVirtual
+{
+    display: none;
+}
+#checkboxes
+{
+    position: relative;
+    left: 4em;
+}
+#newTrainer
+{
+    display: none;
+}
